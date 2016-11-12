@@ -11,10 +11,14 @@ import UIKit
 class ViewController: UIViewController, UITextFieldDelegate {
     
     //appropriate to use ! here because it's a ui element so it had better be there
+    //UI elements
     @IBOutlet var lowerBoundField: UITextField!
     @IBOutlet var upperBoundField: UITextField!
     //@IBOutlet var generateNumberButton: UIButton!
     @IBOutlet var resultLabel: UILabel!
+    
+    //other helper variables
+    var stringOfRandomNumber: String = "0";
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,25 +35,42 @@ class ViewController: UIViewController, UITextFieldDelegate {
         lowerBoundField.text = "0";
         upperBoundField.text = "100";
         
+        //default text
+        resultLabel.text = ":D";
         
         //disabling until text fields are valid as numbers only; NOTE: maybe don't need if text field keypad type is number only
         //generateNumberButton.isEnabled = false;
     }
     
     @IBAction func clickBtnToGenerateRandomNumber(){
+        //calls func to calculate random number
+        //figured that sending text fields to private function would be better for security or clean code. Am I thinking about that right?
+        //NOTE: wouldn't let me use "and" to separate
+        resultLabel.text = calculateRandomNumber(upperStr: upperBoundField.text!, lowerStr: lowerBoundField.text!);
         
-        //call calculateRandomNumber() and send upper and lower bound numbers to it. Returns random number
-        
-        //call function to display random number in app here
+        //calls function to display random number in label ui el
+        //displayRandomlyGeneratedNumber();
     }
     
     //figure out good syntax to accept arguments of two bounds
-    func calculateRandomNumber(){
+    private func calculateRandomNumber(upperStr: String, lowerStr: String) -> String {
         //code for calculating random number in swift goes here, and is returned
+        let upperNum = UInt32(upperStr);
+        let lowerNum = UInt32(lowerStr);
+        
+        let randomNum = arc4random_uniform(upperNum!) + lowerNum! // [1, 100]
+        
+        let randomStrOfNum = String(randomNum);
+        
+        return randomStrOfNum;
     }
     
-    //write function here to display random number in app here
-    
+    //write function here to display random number in app here, unless I need to do it in same func? That wouldn't make sense, tho
+    func displayRandomlyGeneratedNumber(){
+        //this function might be totes unnecessary - remove if it looks unnecessary later :D
+        //static test before wiring up
+        resultLabel.text = stringOfRandomNumber;
+    }
     
     
     
