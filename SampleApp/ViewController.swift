@@ -10,44 +10,32 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
-    //appropriate to use ! here because it's a ui element so it had better be there
-    //UI elements
+    //appropriate to use ! here because these are UI element so it had better be there
     @IBOutlet var lowerBoundField: UITextField!
     @IBOutlet var upperBoundField: UITextField!
-    //@IBOutlet var generateNumberButton: UIButton!
     @IBOutlet var resultLabel: UILabel!
-    
-    //other helper variables
-    var stringOfRandomNumber: String = "0";
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // ADDITIONAL SETUP AFTER VIEW LOADS - after this, there's another lifecycle func for viewDidAppear()
         
-        //NOTE: what does delegate = self mean? xD
+        //assign delegates
         lowerBoundField.delegate = self;
-        lowerBoundField.keyboardType = .numberPad;
-        
         upperBoundField.delegate = self;
+        
+        //force keyboard type of numberPad
+        lowerBoundField.keyboardType = .numberPad;
         upperBoundField.keyboardType = .numberPad;
         
-        //defaulting to 0 and 100 to help prevent non-numbers coming in through text fields
+        //defaulting lower and upper bounds to 0 and 100
         lowerBoundField.text = "0";
         upperBoundField.text = "100";
         
         //default text
-        resultLabel.text = ":D";
-        
-        //disabling until text fields are valid as numbers only; NOTE: maybe don't need if text field keypad type is number only
-        //generateNumberButton.isEnabled = false;
+        resultLabel.text = "Result: ";
     }
     
-    override func viewDidAppear(_ animated: Bool){
-        super.viewDidAppear(animated);
-        
-        
-    }
-    
+    //this dismisses the keyboard when user clicks outside of a text field
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         view.endEditing(true);
         super.touchesBegan(touches, with: event);
@@ -55,57 +43,29 @@ class ViewController: UIViewController, UITextFieldDelegate {
         lowerBoundField.resignFirstResponder();
         upperBoundField.resignFirstResponder();
     }
-    
+
     @IBAction func clickBtnToGenerateRandomNumber(){
-        //calls func to calculate random number
-        //figured that sending text fields to private function would be better for security or clean code. Am I thinking about that right?
-        //NOTE: wouldn't let me use "and" to separate
-        resultLabel.text = calculateRandomNumber(upperStr: upperBoundField.text!, lowerStr: lowerBoundField.text!);
-        
-        //calls function to display random number in label ui el
-        //displayRandomlyGeneratedNumber();
+        //calls func to calculate random number, and returned value populates result label
+        resultLabel.text = "Result: " + calculateRandomNumber(upperStr: upperBoundField.text!, lowerStr: lowerBoundField.text!);
     }
     
-    //figure out good syntax to accept arguments of two bounds
     private func calculateRandomNumber(upperStr: String, lowerStr: String) -> String {
-        //code for calculating random number in swift goes here, and is returned
+        //convert string from textfields to Int types that work with native random number generator function
         let upperNum = UInt32(upperStr);
         let lowerNum = UInt32(lowerStr);
         
-        let randomNum = arc4random_uniform(upperNum!) + lowerNum! // [1, 100]
+        //arc4random is random number generator function
+        let randomNum = lowerNum! + arc4random_uniform(upperNum! - lowerNum! + 1);
         
+        //convert result of rndomly generated number back to string
         let randomStrOfNum = String(randomNum);
         
         return randomStrOfNum;
     }
     
-    //write function here to display random number in app here, unless I need to do it in same func? That wouldn't make sense, tho
-    func displayRandomlyGeneratedNumber(){
-        //this function might be totes unnecessary - remove if it looks unnecessary later :D
-        //static test before wiring up
-        resultLabel.text = stringOfRandomNumber;
-    }
-    
-    
-    
-    //logic and ui tasks to do:
-    //---DONE?: write function for user type events - specify number only or constrain to number only in text fields
-    //write function for user click btn event
-        //this will get min and max vals from input fields for random function
-    
-    //write function to bind displayed number to what's returned from btn click function event
-    //??????---------I created two side by side labels, so one could only display number field. Would it be better to have results: # all in same label somehow? ASK ERIC--------??????
-    
-    
-    //??????-----ASK ERIC ABOUT WHETHER THAT BOTTOM BTN BAR IS PART OF ASSIGNMENT------??????
-
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        // Dispose of any resources that can be recreated.s
     }
-
-
 }
 
