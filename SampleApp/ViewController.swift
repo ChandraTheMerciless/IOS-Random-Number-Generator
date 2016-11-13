@@ -42,6 +42,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
         //generateNumberButton.isEnabled = false;
     }
     
+    override func viewDidAppear(_ animated: Bool){
+        super.viewDidAppear(animated);
+        
+        
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        view.endEditing(true);
+        super.touchesBegan(touches, with: event);
+        
+        lowerBoundField.resignFirstResponder();
+        upperBoundField.resignFirstResponder();
+    }
+    
     @IBAction func clickBtnToGenerateRandomNumber(){
         //calls func to calculate random number
         //figured that sending text fields to private function would be better for security or clean code. Am I thinking about that right?
