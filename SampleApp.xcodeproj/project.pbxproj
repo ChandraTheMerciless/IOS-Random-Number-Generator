@@ -17,6 +17,7 @@
 		5BD0C73B1DE1599F0077D401 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD0C7381DE158CE0077D401 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5BD0C73D1DE215200077D401 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0C73C1DE215200077D401 /* MovieTableViewCell.swift */; };
 		5BD0C73F1DE21D160077D401 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0C73E1DE21D160077D401 /* MovieDetailViewController.swift */; };
+		5BD0C7411DE2568A0077D401 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0C7401DE2568A0077D401 /* ThemeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,6 +46,7 @@
 		5BD0C7381DE158CE0077D401 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		5BD0C73C1DE215200077D401 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		5BD0C73E1DE21D160077D401 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		5BD0C7401DE2568A0077D401 /* ThemeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				5BB09AD61DD154E700831B03 /* LaunchScreen.storyboard */,
 				5BB09AD91DD154E700831B03 /* Info.plist */,
 				5BD0C7351DE157A50077D401 /* MovieTableViewController.swift */,
+				5BD0C7401DE2568A0077D401 /* ThemeViewController.swift */,
 			);
 			path = SampleApp;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BD0C7411DE2568A0077D401 /* ThemeViewController.swift in Sources */,
 				5BD0C7361DE157A50077D401 /* MovieTableViewController.swift in Sources */,
 				5BD0C73F1DE21D160077D401 /* MovieDetailViewController.swift in Sources */,
 				5BB09AD01DD154E700831B03 /* ViewController.swift in Sources */,

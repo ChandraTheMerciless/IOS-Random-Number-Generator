@@ -10,10 +10,36 @@ import UIKit
 
 class MovieDetailViewController: UIViewController {
 
+    @IBOutlet var movieTitle: UILabel!
+    @IBOutlet var movieYear: UILabel!
+    @IBOutlet var moviePoster: UIImage!
+    
+    var movieTitleText = String()
+    var movieYearText = String()
+    var moviePosterLink = String()
+    
+    //var movieData: movieData?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        movieTitle.text = movieTitleText
+        movieYear.text = movieYearText
+        
+     //   var getImage = UIImage(data: NSData(contentsOf: URL(string:moviePosterLink)!) as Data)
+        
+        
+        let url = NSURL(string:moviePosterLink)
+        var data = NSData(contentsOf:url! as URL)
+       // if data! = nil {
+            moviePoster = UIImage(data:data! as Data)
+        //}
 
-        // Do any additional setup after loading the view.
+      //  if let url = NSURL(string: moviePosterLink) {
+      //      if let data = NSData(contentsOf: url as URL) {
+      //          moviePoster = UIImage(data: data as Data)
+      //      }
+      //  }
     }
 
     override func didReceiveMemoryWarning() {
